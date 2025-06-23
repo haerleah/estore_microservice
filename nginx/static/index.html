@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="header">
+    <img src="logo.png" alt="Логотип" class="logo">
+    <h1 class="title">Интернет-магазин</h1>
+</header>
+<div class="container">
+    <nav class="sidebar">
+        <h2>Разделы</h2>
+        <ul class="menu">
+            <li><a href="#" data-section="electro">Электротовары</a></li>
+            <li><a href="#" data-section="purchases">Покупки</a></li>
+            <li><a href="#" data-section="employees">Сотрудники</a></li>
+            <li>
+                <a href="#" class="toggle" data-target="references">Справочники ▾</a>
+                <ul id="references" class="submenu">
+                    <li><a href="#" data-section="positions">Должности</a></li>
+                    <li><a href="#" data-section="electronics">Тип электроники</a></li>
+                    <li><a href="#" data-section="store">Магазин</a></li>
+                    <li><a href="#" data-section="purchaseType">Тип покупки</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="toggle" data-target="additional">Дополнительный функционал ▾</a>
+                <ul id="additional" class="submenu">
+                    <li><a href="#" data-section="bestCriteria">Лучшие сотрудники по критериям</a></li>
+                    <li><a href="#" data-section="bestByPosition">Лучшие сотрудники по должности и количеству продаж</a>
+                    </li>
+                    <li><a href="#" data-section="sumByPayment">Сумма полученных денежных средств по способу оплаты</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <section id="content">
+            <div class="controls">
+                <label for="page-size-input" class="page-size-label">
+                    Размер страницы:
+                    <input type="number" id="page-size-input" min="1" value="10">
+                </label>
+                <button id="prev-page" class="btn pagination-btn" disabled>←</button>
+                <span id="page-info" class="page-info">Стр. 1 / 1</span>
+                <button id="next-page" class="btn pagination-btn" disabled>→</button>
+                <button id="add-btn" class="btn add-btn">Добавить</button>
+            </div>
+            <div id="create-form-container"></div>
+            <div class="table-container">
+                <table id="data-table">
+                    <thead>
+                    <tr id="table-header"></tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+            <form id="upload-form" class="upload-form" enctype="multipart/form-data">
+                <div class="form-title">Загрузка ZIP-файла с данными</div>
+                <div class="form-group">
+                    <label for="zip-file" class="btn file-btn">
+                        Обзор
+                        <input type="file" id="zip-file" name="zip-file" accept=".zip">
+                    </label>
+                    <span id="file-name" class="file-name">Файл не выбран</span>
+                    <button type="button" id="upload-btn" class="btn upload-btn" hidden>Загрузить</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

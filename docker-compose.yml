@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:latest
+    container_name: estore-db
+    environment:
+      POSTGRES_USER: estoreuser
+      POSTGRES_PASSWORD: estoreuser
+      POSTGRES_DB: estoredb
+    ports:
+      - "54322:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - estore-net
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: estore-app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/estoredb
+      SPRING_DATASOURCE_USERNAME: estoreuser
+      SPRING_DATASOURCE_PASSWORD: estoreuser
+    networks:
+      - estore-net
+    ports:
+      - "8081:8081"
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: estore-nginx
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    networks:
+      - estore-net
+volumes:
+  db_data:
+networks:
+  estore-net:
+    driver: bridge
