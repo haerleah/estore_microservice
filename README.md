@@ -19,6 +19,8 @@
 Просмотреть Swagger-документацию можно по адресу ```http://localhost:8081/swagger-ui/index.html```
 # Инструкция по запуску
 - Склонируйте репозиторий ```git clone https://github.com/haerleah/estore_microservice.git``` или ```git clone git@github.com:haerleah/estore_microservice.git```
-## Последующие команды выполняются из корня проекта
+### Последующие команды выполняются из корня проекта
 - Соберите jar микросервиса ```mvn package```
 - Разверните решение ```docker-compose up --build```
+
+#### В случае, если при сборке приложения падают тесты на этапе подключения к БД, удалите файлы тестов ```/estore_microservice/src/test/java/ru/isands/test/estore/DemoApplicationTests.java```. Причина - отсутсвие на целевом компьютере установленной СУБД PostgreSQL.
